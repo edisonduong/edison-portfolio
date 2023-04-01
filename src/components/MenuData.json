@@ -1,0 +1,18 @@
+[
+    {
+        "name": "About Me",
+        "link": "/"
+    },
+    {
+        "name": "Experience",
+        "link": "/experience"
+    },
+    {
+        "name": "Skills",
+        "link": "/skills"
+    },
+    {
+        "name": "About Site",
+        "link": "/about"
+    }
+]
