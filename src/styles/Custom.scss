@@ -1,4 +1,221 @@
-.align-text-image {
+$welcome-text: #fff;
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(+100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    transform: translateY(+100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.color-background {
+  background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+  background-color: #fff;
+}
+
+p {
+  font-size: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+.welcome {
+  text-align: center;
+  color: $welcome-text;
+  img {
+    border-radius: 50%;
+  }
+}
+
+.home-welcome-desktop {
     display: flex;
     align-items: center;
+    justify-content: center; /* optional, to center horizontally as well */
+  img {
+    margin-left: 30px;
+    max-width: 30%;
+  }
+  h1 {
+    color: $welcome-text;
+    font-size: 40px;
+  }
+}
+
+.home-welcome-mobile {
+  img {
+    display: block;
+    width: 100%;
+  }
+  h1 {
+    color: $welcome-text;
+    font-size: 30px;
+  }
+}
+
+.home-profile-pic {
+  max-width: 50%;
+}
+
+.animated-element {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.animate {
+  opacity: 1;
+}
+
+.title {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.section {
+  margin-top: -22px;
+  padding-bottom: 15px;
+}
+
+.gray-section {
+  color: #fff;
+  background-color: #404040;
+  p {
+    color: #d3d3d3;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.white-section {
+  background-color: #fff;
+  p {
+    color: #404040;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+.animated-on-visible-slide-in-from-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 1s, transform 0.5s;
+  transition-delay: 0.2s; /* Add a start delay of 0.5 seconds */
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.animated-on-visible-slide-in-from-right {
+  opacity: 0;
+  transform: translateX(+100%);
+  transition: opacity 1s, transform 0.5s;
+  transition-delay: 0.2s; /* Add a start delay of 0.5 seconds */
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animated-on-visible-slide-in-from-top {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 1s, transform 0.5s;
+  transition-delay: 0.2s; /* Add a start delay of 0.5 seconds */
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated-on-visible-slide-in-from-bottom {
+    opacity: 0;
+    transform: translateY(+100%);
+    transition: opacity 1s, transform 0.5s;
+    transition-delay: 0.2s; /* Add a start delay of 0.5 seconds */
+    &.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.animated-on-visible-appear {
+  opacity: 0;
+  transition: opacity 1s;
+  transition-delay: 0.2s; /* Add a start delay of 0.5 seconds */
+  &.is-visible {
+    opacity: 1;
+  }
+}
+
+.experience-card {
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 95%;
+    &.desktop {
+        width: 50%;
+    }
+}
+
+.footer {
+    color: #fff;
+    background-color: #000;
+    margin-bottom: -20px;
 }

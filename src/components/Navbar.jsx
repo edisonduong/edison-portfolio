@@ -114,7 +114,7 @@ export default function Navbar() {
               cursor: "pointer",
             }}
           >
-            Mobile LOGO
+            Edison Duong
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {menuItems.map((menu, key) => (

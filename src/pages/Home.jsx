@@ -1,16 +1,24 @@
-import React from "react";
-import PageWrapper from "../components/PageWrapper";
-import avatar from "../images/avatar.png";
+import React, {useEffect} from "react";
+import About from "./About";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Welcome from "./Welcome";
+import Experience from "./Experience";
+import Footer from "./Footer";
 
 export default function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const isDesktop = useMediaQuery("(min-width:900px)");
+
   return (
-    <PageWrapper>
-      <div className="align-text-image">
-        <span>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non suscipit velit, condimentum tempor ipsum. Nunc suscipit, orci vitae volutpat viverra, libero erat bibendum erat, ac luctus libero orci ac massa. Vestibulum posuere commodo odio, quis molestie leo pharetra pulvinar. Nunc sit amet nisl pellentesque, fringilla odio sit amet, commodo nisi. Aenean vel ex gravida, ornare nunc ac, elementum nunc. Aenean nec odio eget felis egestas hendrerit non nec enim. Praesent nec turpis dui. Vestibulum placerat, velit eget facilisis efficitur, magna magna vehicula leo, id semper sem lectus quis lorem. Cras vestibulum hendrerit lacus, ut eleifend sem tempor vel. Vestibulum vel nibh erat.
-        </span>
-        <img src={avatar} alt="avatar" height="300px" />
+    <>
+      <div className="color-background">
+        <Welcome isDesktop={isDesktop} />
       </div>
-    </PageWrapper>
+      <About />
+      <Experience isDesktop={isDesktop} />
+      <Footer />
+    </>
   );
 }
