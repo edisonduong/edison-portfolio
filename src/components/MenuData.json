@@ -1,18 +1,18 @@
 [
     {
         "name": "About Me",
-        "link": "/"
+        "link": "about"
     },
     {
         "name": "Experience",
-        "link": "/experience"
+        "link": "experience"
     },
     {
         "name": "Skills",
-        "link": "/skills"
+        "link": "skills"
     },
     {
         "name": "About Site",
-        "link": "/about"
+        "link": "about"
     }
 ]
