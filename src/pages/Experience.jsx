@@ -1,6 +1,6 @@
 import React from "react";
 import AnimateComponent from "../components/AnimateComponent";
-import ExperienceItem from "../components/ExperienceItem";
+import ItemCard from "../components/ItemCard";
 
 export default function Experience(props) {
   return (
@@ -9,12 +9,12 @@ export default function Experience(props) {
       <AnimateComponent
         animationStyle={"animated-on-visible-appear"}
       >
-        <ExperienceItem isDesktop={props.isDesktop} />
+      <ItemCard title={"Infinite Campus - Full Stack Software Engineer"} description={"Software Engineer"} isDesktop={props.isDesktop} />
       </AnimateComponent>
       <AnimateComponent
         animationStyle={"animated-on-visible-appear"}
       >
-        <ExperienceItem isDesktop={props.isDesktop} />
+      <ItemCard title={"Alina Health - Service Technician II"} description={"desciption"} isDesktop={props.isDesktop} />
       </AnimateComponent>
     </div>
   );
