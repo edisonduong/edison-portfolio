@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,37 +7,44 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import { useNavigate } from "react-router-dom";
 import MenuData from "../components/MenuData.json";
+import AlertMessage from "./AlertMessage";
 
 // TODO: FUTURE USE BACKEND ENDPOINT TO GENERATE NAVBAR
 const menuItems = MenuData;
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export default function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = React.useState("");
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  const goTo = (id) => {
+    try {
+      const section = document.querySelector(`#${id}`);
+      section.scrollIntoView({ behavior: 'smooth' });
+    } catch (error) {
+      console.log(error.message)
+      setErrorMessage(error.message);
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+      }, 5000);
+    }
+  }
 
   return (
     <AppBar position="static" sx={{ bgcolor: "#000"}}>
@@ -47,7 +54,7 @@ export default function Navbar() {
             variant="h6"
             noWrap
             component="a"
-            onClick={() => navigate("/")}
+            onClick={() => goTo("home")}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -90,25 +97,23 @@ export default function Navbar() {
               }}
             >
               {menuItems.map((menu, key) => (
-                <MenuItem key={key} onClick={() => navigate(menu.link)}>
+                <MenuItem key={key} onClick={() => goTo(menu.link)}>
                   <Typography textAlign="center">{menu.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            onClick={() => navigate("/")}
+            onClick={() => goTo("home")}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
               cursor: "pointer",
@@ -120,43 +125,22 @@ export default function Navbar() {
             {menuItems.map((menu, key) => (
               <Button
                 key={key}
-                onClick={() => navigate(menu.link)}
+                onClick={() => goTo(menu.link)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {menu.name}
               </Button>
             ))}
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting, key) => (
-                <MenuItem key={key} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          <div>
+            {open && (
+              <AlertMessage
+                severity="error"
+                message={errorMessage}
+                onClose={handleClose}
+              />
+            )}
+          </div>
         </Toolbar>
       </Container>
     </AppBar>
